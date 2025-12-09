@@ -1,0 +1,1498 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Master 3ème - Préparation Brevet</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      --primary: #0b1b3b;
+      --accent: #ffb400;
+      --bg-light: #f5f7fb;
+      --text-main: #111827;
+      --text-muted: #6b7280;
+      --radius-md: 10px;
+      --radius-lg: 18px;
+      --shadow-soft: 0 10px 25px rgba(15, 23, 42, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg-light);
+      color: var(--text-main);
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: var(--primary);
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.3);
+    }
+
+    .nav-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0.6rem 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      font-size: 1rem;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+      font-size: 0.95rem;
+    }
+
+    .nav-links a {
+      padding: 0.35rem 0.6rem;
+      border-radius: 999px;
+      transition: background 0.2s, color 0.2s, transform 0.1s;
+    }
+
+    .nav-links a:hover {
+      background: rgba(255, 255, 255, 0.12);
+      transform: translateY(-1px);
+    }
+
+    .nav-links a.active-link {
+      background: var(--accent);
+      color: #111827;
+      font-weight: 600;
+    }
+
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+    }
+
+    .nav-toggle span {
+      width: 22px;
+      height: 2px;
+      background: #ffffff;
+      border-radius: 999px;
+      transition: transform 0.2s, opacity 0.2s;
+    }
+
+    .nav-toggle.open span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    .nav-toggle.open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .nav-toggle.open span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    @media (max-width: 720px) {
+      .nav-links {
+        position: fixed;
+        inset: 52px 0 auto 0;
+        background: var(--primary);
+        flex-direction: column;
+        padding: 0.8rem 1.2rem 1.2rem;
+        transform: translateY(-120%);
+        transition: transform 0.22s ease-out;
+      }
+
+      .nav-links.open {
+        transform: translateY(0);
+      }
+
+      .nav-toggle {
+        display: flex;
+      }
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1.5rem 1.2rem 3rem;
+    }
+
+    section {
+      margin-bottom: 3rem;
+    }
+
+    .section-title {
+      font-size: 1.6rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .section-subtitle {
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+      font-size: 0.96rem;
+    }
+
+    /* ---------- PAGE 1 : ACCUEIL ---------- */
+    /* // ACCUEIL */
+    .hero {
+      background: linear-gradient(135deg, var(--primary), #1f2a5c);
+      border-radius: var(--radius-lg);
+      padding: 2.2rem 2.1rem;
+      color: #ffffff;
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.2fr);
+      gap: 2rem;
+      box-shadow: var(--shadow-soft);
+      margin-top: 1.2rem;
+    }
+
+    .hero-title {
+      font-size: 2.1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1rem;
+      color: #e5e7eb;
+      max-width: 32rem;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 1rem 0 1.7rem;
+    }
+
+    .hero-badge {
+      background: rgba(15, 23, 42, 0.3);
+      border-radius: 999px;
+      padding: 0.3rem 0.7rem;
+      font-size: 0.8rem;
+      border: 1px solid rgba(156, 163, 175, 0.3);
+    }
+
+    .cta-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.75rem 1.6rem;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #111827;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      border: none;
+      cursor: pointer;
+      font-size: 0.95rem;
+      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.25);
+      transition: transform 0.1s, box-shadow 0.1s, background 0.1s;
+    }
+
+    .cta-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.28);
+      background: #ffc94a;
+    }
+
+    .cta-primary span {
+      margin-left: 0.4rem;
+    }
+
+    .hero-side {
+      background: rgba(15, 23, 42, 0.18);
+      border-radius: var(--radius-md);
+      padding: 1.4rem 1.3rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 0.7rem;
+    }
+
+    .hero-side-title {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+    }
+
+    .hero-side-list {
+      font-size: 0.92rem;
+      color: #e5e7eb;
+      list-style: none;
+    }
+
+    .hero-side-list li {
+      margin-bottom: 0.3rem;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .hero-side-tagline {
+      margin-top: 0.7rem;
+      font-size: 0.86rem;
+      color: #d1d5db;
+    }
+
+    @media (max-width: 880px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .alert-urgent {
+      background: linear-gradient(120deg, #ffb400, #ff7a00);
+      color: #111827;
+      border-radius: var(--radius-md);
+      padding: 1rem 1.2rem;
+      margin-top: 1.8rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .alert-urgent-title {
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .alert-urgent-list {
+      list-style: disc;
+      padding-left: 1.3rem;
+      font-size: 0.9rem;
+    }
+
+    .feature-grid {
+      margin-top: 2rem;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.4rem;
+    }
+
+    .feature-card {
+      background: #ffffff;
+      border-radius: var(--radius-md);
+      padding: 1.1rem 1rem;
+      box-shadow: 0 8px 18px rgba(15, 23, 42, 0.08);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 160px;
+      border: 1px solid #e5e7eb;
+      transition: transform 0.12s ease-out, box-shadow 0.12s ease-out;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 30px rgba(15, 23, 42, 0.12);
+    }
+
+    .feature-icon {
+      font-size: 1.6rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .feature-title {
+      font-weight: 700;
+      margin-bottom: 0.2rem;
+    }
+
+    .feature-text {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 0.7rem;
+    }
+
+    .feature-link {
+      margin-top: auto;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--primary);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    @media (max-width: 860px) {
+      .feature-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .feature-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    /* ---------- PAGE 2 : RESSOURCES (INDEX) ---------- */
+    /* // RESSOURCES (FICHES) : PAGE PRINCIPALE */
+    .subjects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.4rem;
+      margin-top: 1.2rem;
+    }
+
+    @media (max-width: 780px) {
+      .subjects-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .subject-card {
+      background: #ffffff;
+      border-radius: var(--radius-md);
+      padding: 1.1rem 1rem;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 8px 18px rgba(15, 23, 42, 0.07);
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+
+    .subject-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+
+    .subject-tag {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+    }
+
+    .subject-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .subject-link {
+      margin-top: 0.2rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--primary);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    /* ---------- SOUS-PAGES DE MATIÈRES ---------- */
+    .subject-page {
+      background: #ffffff;
+      border-radius: var(--radius-md);
+      padding: 1.2rem 1.1rem 1.3rem;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 8px 18px rgba(15, 23, 42, 0.07);
+      margin-top: 1.3rem;
+    }
+
+    .subject-page-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 0.7rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .subject-page-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+    }
+
+    .subject-page-tagline {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .subject-back {
+      font-size: 0.86rem;
+      color: var(--primary);
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .resource-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.9rem;
+      margin-top: 0.6rem;
+    }
+
+    @media (max-width: 680px) {
+      .resource-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    details {
+      border-radius: 8px;
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      padding: 0.6rem 0.7rem;
+    }
+
+    details[open] {
+      background: #f3f4ff;
+      border-color: #c7d2fe;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.94rem;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .summary-prefix {
+      font-size: 1rem;
+    }
+
+    details > div {
+      margin-top: 0.5rem;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    .resource-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      margin-top: 0.3rem;
+    }
+
+    .resource-link {
+      font-size: 0.88rem;
+      color: var(--primary);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .resource-pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.15rem 0.55rem;
+      border-radius: 999px;
+      background: #e5e7eb;
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      letter-spacing: 0.11em;
+      color: #374151;
+    }
+
+    /* ---------- PAGE 3 : OUTILS & MÉTHODES ---------- */
+    /* // OUTILS & MÉTHODES */
+    .tools-grid {
+      margin-top: 1.2rem;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.2rem;
+    }
+
+    @media (max-width: 960px) {
+      .tools-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 720px) {
+      .tools-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .tool-card {
+      background: #ffffff;
+      border-radius: var(--radius-md);
+      padding: 1rem 0.95rem 1.1rem;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 8px 18px rgba(15, 23, 42, 0.07);
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .tool-title {
+      font-size: 1rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .tool-badge {
+      font-size: 0.75rem;
+      padding: 0.1rem 0.5rem;
+      border-radius: 999px;
+      background: #eff6ff;
+      color: #1d4ed8;
+    }
+
+    .tool-text {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    .tool-placeholder {
+      margin-top: 0.3rem;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px dashed #d1d5db;
+      background: #f9fafb;
+    }
+
+    .tool-note {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 0.4rem;
+    }
+
+    .method-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+      margin-top: 0.3rem;
+    }
+
+    .method-btn {
+      padding: 0.45rem 0.7rem;
+      border-radius: 999px;
+      border: none;
+      background: #f3f4ff;
+      color: #111827;
+      font-size: 0.88rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      transition: background 0.12s, transform 0.08s;
+    }
+
+    .method-btn:hover {
+      background: #e0e7ff;
+      transform: translateY(-1px);
+    }
+
+    /* ---------- PAGE 4 : AGENDA & SUIVI ---------- */
+    /* // AGENDA & SUIVI */
+    .calendar-block {
+      background: #ffffff;
+      border-radius: var(--radius-md);
+      padding: 1rem 1rem 1.3rem;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 8px 18px rgba(15, 23, 42, 0.07);
+      margin-top: 1.2rem;
+    }
+
+    .calendar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 0.6rem;
+      margin-bottom: 0.7rem;
+    }
+
+    .calendar-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+    }
+
+    .calendar-help {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .calendar-placeholder,
+    .dashboard-placeholder {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px dashed #d1d5db;
+      background: #f9fafb;
+      margin-top: 0.6rem;
+    }
+
+    .dashboard-grid {
+      margin-top: 1.6rem;
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: 1.2rem;
+    }
+
+    @media (max-width: 880px) {
+      .dashboard-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .dashboard-info {
+      background: #ffffff;
+      border-radius: var(--radius-md);
+      padding: 1rem 1rem 1.1rem;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 8px 18px rgba(15, 23, 42, 0.07);
+    }
+
+    .dashboard-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+    }
+
+    .dashboard-text {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .dashboard-list {
+      margin-top: 0.7rem;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      list-style: disc;
+      padding-left: 1.2rem;
+    }
+
+    .dashboard-note {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 0.6rem;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.18rem 0.6rem;
+      border-radius: 999px;
+      background: #e5e7eb;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.11em;
+      color: #374151;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.8rem;
+      padding: 1rem 0 0.8rem;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+  <!-- NAVIGATION PRINCIPALE -->
+  <header>
+    <div class="nav-container">
+      <div class="logo">MASTER 3ÈME</div>
+      <nav>
+        <div class="nav-toggle" id="navToggle" aria-label="Ouvrir le menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </div>
+        <div class="nav-links" id="navLinks">
+          <a href="#accueil" class="active-link">Accueil</a>
+          <a href="#ressources">Ressources (Fiches)</a>
+          <a href="#outils">Outils & Méthodes</a>
+          <a href="#agenda">Agenda & Suivi</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- // PAGE 1 : ACCUEIL -->
+    <section id="accueil">
+      <div class="hero">
+        <div>
+          <h1 class="hero-title">MASTER 3ÈME : Votre Brevet, maîtrisé.</h1>
+          <p class="hero-subtitle">
+            La plateforme unique pour organiser, réviser et dominer votre année de Troisième, sans stress et avec une méthode claire.
+          </p>
+          <div class="hero-badges">
+            <span class="hero-badge">📚 Toutes les matières</span>
+            <span class="hero-badge">⏱️ Objectif Brevet 2025</span>
+            <span class="hero-badge">✅ Suivi de progression</span>
+          </div>
+          <a href="#ressources">
+            <button class="cta-primary">
+              LANCER MES RÉVISIONS <span>🚀</span>
+            </button>
+          </a>
+        </div>
+        <aside class="hero-side">
+          <p class="hero-side-title">Pourquoi utiliser Master 3ème ?</p>
+          <ul class="hero-side-list">
+            <li>✅ Fiches organisées par matière.</li>
+            <li>✅ Liens vers cartes mentales, quiz et flashcards.</li>
+            <li>✅ Outils pour calculer points et moyenne.</li>
+            <li>✅ Agenda connecté à ton planning réel.</li>
+          </ul>
+          <p class="hero-side-tagline">
+            Commence aujourd'hui, avance un peu chaque semaine, et arrive serein au Brevet.
+          </p>
+        </aside>
+      </div>
+
+      <div class="alert-urgent" aria-label="Annonces urgentes">
+        <div class="alert-urgent-title">🚨 ANNONCES URGENTES 🚨</div>
+        <ul class="alert-urgent-list">
+          <li>Simule dès maintenant tes points au Brevet pour fixer ton objectif.</li>
+          <li>Ajoute les dates de tes contrôles importants dans l'agenda.</li>
+          <li>Planifie au moins 2 séances de révision par semaine, par matière clé.</li>
+        </ul>
+      </div>
+
+      <div class="feature-grid">
+        <article class="feature-card">
+          <div>
+            <div class="feature-icon">📑</div>
+            <h3 class="feature-title">Fiches & Ressources</h3>
+            <p class="feature-text">
+              Accède aux fiches de révision, cartes mentales, quiz et exercices pour chaque matière du Brevet.
+            </p>
+          </div>
+          <a href="#ressources" class="feature-link">
+            Aller aux ressources <span>→</span>
+          </a>
+        </article>
+
+        <article class="feature-card">
+          <div>
+            <div class="feature-icon">🧰</div>
+            <h3 class="feature-title">Outils & Méthodes</h3>
+            <p class="feature-text">
+              Utilise les calculateurs de points, moyenne générale et des fiches méthode pour les épreuves écrites.
+            </p>
+          </div>
+          <a href="#outils" class="feature-link">
+            Découvrir les outils <span>→</span>
+          </a>
+        </article>
+
+        <article class="feature-card">
+          <div>
+            <div class="feature-icon">🗓️</div>
+            <h3 class="feature-title">Agenda & Suivi</h3>
+            <p class="feature-text">
+              Organise tes semaines, note tes contrôles et suis ta progression avec un dashboard simple.
+            </p>
+          </div>
+          <a href="#agenda" class="feature-link">
+            Voir l'agenda <span>→</span>
+          </a>
+        </article>
+      </div>
+    </section>
+
+    <!-- // PAGE 2 : RESSOURCES (INDEX MATIÈRES) -->
+    <section id="ressources">
+      <h2 class="section-title">Ressources par matière</h2>
+      <p class="section-subtitle">
+        Choisis une matière pour accéder aux fiches de révision, cartes mentales, quiz, exercices, évaluations d'entraînement et sites tout-en-un.
+      </p>
+
+      <div class="subjects-grid">
+        <article class="subject-card">
+          <h3 class="subject-title">Mathématiques</h3>
+          <p class="subject-tag">Algèbre · Géométrie · Problèmes</p>
+          <p class="subject-desc">
+            Fiches, exercices et quiz pour maîtriser les bases en calcul, fonctions, statistiques et géométrie.
+          </p>
+          <a href="#ressources-maths" class="subject-link">Ouvrir la page Mathématiques →</a>
+        </article>
+
+        <article class="subject-card">
+          <h3 class="subject-title">Français</h3>
+          <p class="subject-tag">Langue · Rédaction · Lecture</p>
+          <p class="subject-desc">
+            Méthodes de rédaction, fiches de grammaire, quiz et exercices pour l’épreuve écrite.
+          </p>
+          <a href="#ressources-francais" class="subject-link">Ouvrir la page Français →</a>
+        </article>
+
+        <article class="subject-card">
+          <h3 class="subject-title">Histoire</h3>
+          <p class="subject-tag">Repères · Thèmes majeurs</p>
+          <p class="subject-desc">
+            Fiches chronologiques, cartes mentales et quiz sur les grands événements du XXᵉ siècle et plus.
+          </p>
+          <a href="#ressources-histoire" class="subject-link">Ouvrir la page Histoire →</a>
+        </article>
+
+        <article class="subject-card">
+          <h3 class="subject-title">Géographie</h3>
+          <p class="subject-tag">Cartes · Territoires</p>
+          <p class="subject-desc">
+            Cartes, schémas et exercices pour les espaces français et mondiaux au programme.
+          </p>
+          <a href="#ressources-geographie" class="subject-link">Ouvrir la page Géographie →</a>
+        </article>
+
+        <article class="subject-card">
+          <h3 class="subject-title">EMC</h3>
+          <p class="subject-tag">Valeurs · Citoyenneté</p>
+          <p class="subject-desc">
+            Ressources sur les valeurs de la République, les droits, les devoirs et la vie démocratique.
+          </p>
+          <a href="#ressources-emc" class="subject-link">Ouvrir la page EMC →</a>
+        </article>
+
+        <article class="subject-card">
+          <h3 class="subject-title">Physique - Chimie</h3>
+          <p class="subject-tag">Lois · Expériences</p>
+          <p class="subject-desc">
+            Lois physiques, modèles, réactions chimiques, exercices types Brevet et évaluations d’entraînement.
+          </p>
+          <a href="#ressources-physique" class="subject-link">Ouvrir la page Physique - Chimie →</a>
+        </article>
+
+        <article class="subject-card">
+          <h3 class="subject-title">Sciences de la Vie & de la Terre</h3>
+          <p class="subject-tag">Corps humain · Environnement</p>
+          <p class="subject-desc">
+            Fiches et activités sur le vivant, la planète, les risques et la santé.
+          </p>
+          <a href="#ressources-svt" class="subject-link">Ouvrir la page SVT →</a>
+        </article>
+
+        <article class="subject-card">
+          <h3 class="subject-title">DNL Anglais (Mme Houdant)</h3>
+          <p class="subject-tag">CLIL · Anglais scientifique</p>
+          <p class="subject-desc">
+            Ressources bilingues, vocabulaire scientifique et activités pour la DNL Anglais.
+          </p>
+          <a href="#ressources-dnl" class="subject-link">Ouvrir la page DNL Anglais →</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- // SOUS-PAGES INDIVIDUELLES DE RESSOURCES -->
+    <!-- MATHS -->
+    <section id="ressources-maths">
+      <div class="subject-page">
+        <div class="subject-page-header">
+          <div>
+            <a href="#ressources" class="subject-back">← Retour aux matières</a>
+            <h2 class="subject-page-title">Mathématiques</h2>
+          </div>
+          <span class="pill">Brevet · Mathématiques</span>
+        </div>
+        <p class="subject-page-tagline">
+          Fiches de révision, exercices et évaluations d’entraînement pour maîtriser nombres, fonctions, statistiques et géométrie.
+        </p>
+
+        <div class="resource-grid">
+          <details>
+            <summary><span class="summary-prefix">📑</span>Fiches de Révision & Leçons</summary>
+            <div>
+              <p>Fiches synthétiques pour revoir les notions clés.</p>
+              <div class="resource-links">
+                <a href="#" class="resource-link"><span class="resource-pill">PDF</span>Nombres & calculs</a>
+                <a href="#" class="resource-link"><span class="resource-pill">PDF</span>Proportionnalité & pourcentages</a>
+                <a href="#" class="resource-link"><span class="resource-pill">PDF</span>Thalès, Pythagore, trigonométrie</a>
+              </div>
+            </div>
+          </details>
+
+          <details>
+            <summary><span class="summary-prefix">🧠</span>Cartes Mentales</summary>
+            <div>
+              <p>Cartes mentales pour retenir formules et propriétés.</p>
+              <div class="resource-links">
+                <a href="#" class="resource-link"><span class="resource-pill">Mindmap</span>Théorème de Pythagore</a>
+                <a href="#" class="resource-link"><span class="resource-pill">Mindmap</span>Fonctions & graphiques</a>
+              </div>
+            </div>
+          </details>
+
+          <details>
+            <summary><span class="summary-prefix">❓</span>Quizlets</summary>
+            <div>
+              <p>Révise sous forme de cartes question / réponse.</p>
+              <div class="resource-links">
+                <a href="#" class="resource-link"><span class="resource-pill">Quizlet</span>Calcul littéral</a>
+                <a href="#" class="resource-link"><span class="resource-pill">Quizlet</span>Probabilités</a>
+              </div>
+            </div>
+          </details>
+
+          <details>
+            <summary><span class="summary-prefix">❓</span>Quizs Interactifs</summary>
+            <div>
+              <p>Quiz chronométrés pour t’entraîner comme au Brevet.</p>
+              <div class="resource-links">
+                <a href="#" class="resource-link"><span class="resource-pill">Kahoot</span>Fractions & pourcentages</a>
+                <a href="#" class="resource-link"><span class="resource-pill">Kahoot</span>Statistiques</a>
+              </div>
+            </div>
+          </details>
+
+          <details>
+            <summary><span class="summary-prefix">🗂️</span>Flashcards</summary>
+            <div>
+              <p>Flashcards pour mémoriser formules et définitions.</p>
+              <div class="resource-links">
+                <a href="#" class="resource-link"><span class="resource-pill">Flashcards</span>Formules de géométrie</a>
+                <a href="#" class="resource-link"><span class="resource-pill">Flashcards</span>Vocabulaire mathématique</a>
+              </div>
+            </div>
+          </details>
+
+          <details>
+            <summary><span class="summary-prefix">📖</span>Exercices</summary>
+            <div>
+              <p>Séries d’exercices progressifs avec corrections.</p>
+              <div class="resource-links">
+                <a href="#" class="resource-link"><span class="resource-pill">Exercices</span>Équations & inéquations</a>
+                <a href="#" class="resource-link"><span class="resource-pill">Exercices</span>Géométrie dans l’espace</a>
+              </div>
+            </div>
+          </details>
+
+          <details>
+            <summary><span class="summary-prefix">📝</span>Evaluations d'Entraînement</summary>
+            <div>
+              <p>Sujets type Brevet en conditions réelles.</p>
+              <div class="resource-links">
+                <a href="#" class="resource-link"><span class="resource-pill">Sujet</span>Brevet blanc n°1</a>
+                <a href="#" class="resource-link"><span class="resource-pill">Sujet</span>Brevet blanc n°2</a>
+              </div>
+            </div>
+          </details>
+
+          <details>
+            <summary><span class="summary-prefix">🌐</span>Sites webs (Tout en un)</summary>
+            <div>
+              <p>Sites externes regroupant cours, exercices et vidéos.</p>
+              <div class="resource-links">
+                <a href="#" class="resource-link"><span class="resource-pill">Site</span>Plateforme Math tout-en-un</a>
+                <a href="#" class="resource-link"><span class="resource-pill">Site</span>Ressources académiques 3ᵉ</a>
+              </div>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- FRANÇAIS -->
+    <section id="ressources-francais">
+      <div class="subject-page">
+        <div class="subject-page-header">
+          <div>
+            <a href="#ressources" class="subject-back">← Retour aux matières</a>
+            <h2 class="subject-page-title">Français</h2>
+          </div>
+          <span class="pill">Brevet · Français</span>
+        </div>
+        <p class="subject-page-tagline">
+          Prépare la langue, la rédaction et la compréhension de texte avec des fiches, exercices et évaluations.
+        </p>
+
+        <div class="resource-grid">
+          <details>
+            <summary><span class="summary-prefix">📑</span>Fiches de Révision & Leçons</summary>
+            <div>
+              <p>Rappels de grammaire, conjugaison et genres littéraires.</p>
+              <div class="resource-links">
+                <a href="#" class="resource-link"><span class="resource-pill">Fiche</span>Classes grammaticales</a>
+                <a href="#" class="resource-link"><span class="resource-pill">Fiche</span>Figures de style</a>
+              </div>
+            </div>
+          </details>
+
+          <details>
+            <summary><span class="summary-prefix">🧠</span>Cartes Mentales</summary>
+            <div>
+              <p>Schémas pour mémoriser les notions de langue et de lecture.</p>
+              <div class="resource-links">
+                <a href="#" class="resource-link"><span class="resource-pill">Mindmap</span>Genres littéraires</a>
+              </div>
+            </div>
+          </details>
+
+          <details>
+            <summary><span class="summary-prefix">❓</span>Quizlets</summary>
+            <div>
+              <p>Questions/réponses sur le vocabulaire et la conjugaison.</p>
+              <div class="resource-links">
+                <a href="#" class="resource-link"><span class="resource-pill">Quizlet</span>Conjugaison temps simples</a>
+              </div>
+            </div>
+          </details>
+
+          <details>
+            <summary><span class="summary-prefix">❓</span>Quizs Interactifs</summary>
+            <div>
+              <p>Quiz pour t’entraîner sur la langue et la compréhension.</p>
+              <div class="resource-links">
+                <a href="#" class="resource-link"><span class="resource-pill">Quiz</span>Accords & orthographe</a>
+              </div>
+            </div>
+          </details>
+
+          <details>
+            <summary><span class="summary-prefix">🗂️</span>Flashcards</summary>
+            <div>
+              <p>Cartes pour réviser définitions et procédés d’écriture.</p>
+              <div class="resource-links">
+                <a href="#" class="resource-link"><span class="resource-pill">Flashcards</span>Figures de style</a>
+              </div>
+            </div>
+          </details>
+
+          <details>
+            <summary><span class="summary-prefix">📖</span>Exercices</summary>
+            <div>
+              <p>Exercices sur la langue et entraînements à la rédaction.</p>
+              <div class="resource-links">
+                <a href="#" class="resource-link"><span class="resource-pill">Exercices</span>Analyse de texte</a>
+              </div>
+            </div>
+          </details>
+
+          <details>
+            <summary><span class="summary-prefix">📝</span>Evaluations d'Entraînement</summary>
+            <div>
+              <p>Sujets type Brevet pour s’entraîner en conditions réelles.</p>
+              <div class="resource-links">
+                <a href="#" class="resource-link"><span class="resource-pill">Sujet</span>Sujet blanc n°1</a>
+              </div>
+            </div>
+          </details>
+
+          <details>
+            <summary><span class="summary-prefix">🌐</span>Sites webs (Tout en un)</summary>
+            <div>
+              <p>Sites regroupant fiches, vidéos et exercices pour le Français.</p>
+              <div class="resource-links">
+                <a href="#" class="resource-link"><span class="resource-pill">Site</span>Ressources Français 3ᵉ</a>
+              </div>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- HISTOIRE -->
+    <section id="ressources-histoire">
+      <div class="subject-page">
+        <div class="subject-page-header">
+          <div>
+            <a href="#ressources" class="subject-back">← Retour aux matières</a>
+            <h2 class="subject-page-title">Histoire</h2>
+          </div>
+          <span class="pill">Brevet · Histoire</span>
+        </div>
+        <p class="subject-page-tagline">
+          Repères chronologiques, thèmes majeurs et sujets d’entraînement pour l’épreuve d’Histoire.
+        </p>
+
+        <div class="resource-grid">
+          <!-- Même structure de 8 catégories, placeholders -->
+          <details>
+            <summary><span class="summary-prefix">📑</span>Fiches de Révision & Leçons</summary>
+            <div>
+              <p>Repères et grands événements du programme.</p>
+              <div class="resource-links">
+                <a href="#" class="resource-link"><span class="resource-pill">Fiche</span>Guerres mondiales</a>
+              </div>
+            </div>
+          </details>
+          <details>
+            <summary><span class="summary-prefix">🧠</span>Cartes Mentales</summary>
+            <div>
+              <p>Cartes des grandes périodes historiques.</p>
+            </div>
+          </details>
+          <details>
+            <summary><span class="summary-prefix">❓</span>Quizlets</summary>
+            <div>
+              <p>Quiz de repères chronologiques.</p>
+            </div>
+          </details>
+          <details>
+            <summary><span class="summary-prefix">❓</span>Quizs Interactifs</summary>
+            <div>
+              <p>Quiz en ligne pour vérifier tes connaissances.</p>
+            </div>
+          </details>
+          <details>
+            <summary><span class="summary-prefix">🗂️</span>Flashcards</summary>
+            <div>
+              <p>Flashcards sur les dates et personnages clés.</p>
+            </div>
+          </details>
+          <details>
+            <summary><span class="summary-prefix">📖</span>Exercices</summary>
+            <div>
+              <p>Exercices d’analyse de documents historiques.</p>
+            </div>
+          </details>
+          <details>
+            <summary><span class="summary-prefix">📝</span>Evaluations d'Entraînement</summary>
+            <div>
+              <p>Développements construits type Brevet.</p>
+            </div>
+          </details>
+          <details>
+            <summary><span class="summary-prefix">🌐</span>Sites webs (Tout en un)</summary>
+            <div>
+              <p>Portails d’Histoire pour collégiens.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- GÉOGRAPHIE -->
+    <section id="ressources-geographie">
+      <div class="subject-page">
+        <div class="subject-page-header">
+          <div>
+            <a href="#ressources" class="subject-back">← Retour aux matières</a>
+            <h2 class="subject-page-title">Géographie</h2>
+          </div>
+          <span class="pill">Brevet · Géographie</span>
+        </div>
+        <p class="subject-page-tagline">
+          Cartes, schémas et études de cas pour les espaces français et mondiaux.
+        </p>
+
+        <div class="resource-grid">
+          <!-- 8 catégories, placeholders -->
+          <details><summary><span class="summary-prefix">📑</span>Fiches de Révision & Leçons</summary><div><p>Notions clés et vocabulaire géographique.</p></div></details>
+          <details><summary><span class="summary-prefix">🧠</span>Cartes Mentales</summary><div><p>Cartes mentales des thèmes de géographie.</p></div></details>
+          <details><summary><span class="summary-prefix">❓</span>Quizlets</summary><div><p>Quizlets sur les cartes et repères.</p></div></details>
+          <details><summary><span class="summary-prefix">❓</span>Quizs Interactifs</summary><div><p>Quiz interactifs sur les territoires.</p></div></details>
+          <details><summary><span class="summary-prefix">🗂️</span>Flashcards</summary><div><p>Flashcards de vocabulaire géographique.</p></div></details>
+          <details><summary><span class="summary-prefix">📖</span>Exercices</summary><div><p>Analyse de cartes et croquis.</p></div></details>
+          <details><summary><span class="summary-prefix">📝</span>Evaluations d'Entraînement</summary><div><p>Sujets type Brevet en Géographie.</p></div></details>
+          <details><summary><span class="summary-prefix">🌐</span>Sites webs (Tout en un)</summary><div><p>Sites de géographie scolaire.</p></div></details>
+        </div>
+      </div>
+    </section>
+
+    <!-- EMC -->
+    <section id="ressources-emc">
+      <div class="subject-page">
+        <div class="subject-page-header">
+          <div>
+            <a href="#ressources" class="subject-back">← Retour aux matières</a>
+            <h2 class="subject-page-title">EMC</h2>
+          </div>
+          <span class="pill">Brevet · EMC</span>
+        </div>
+        <p class="subject-page-tagline">
+          Valeurs de la République, droits, devoirs et vie démocratique.
+        </p>
+
+        <div class="resource-grid">
+          <!-- 8 catégories, placeholders -->
+          <details><summary><span class="summary-prefix">📑</span>Fiches de Révision & Leçons</summary><div><p>Valeurs et principes de la République.</p></div></details>
+          <details><summary><span class="summary-prefix">🧠</span>Cartes Mentales</summary><div><p>Schémas des institutions et libertés.</p></div></details>
+          <details><summary><span class="summary-prefix">❓</span>Quizlets</summary><div><p>Quizlets sur les notions d’EMC.</p></div></details>
+          <details><summary><span class="summary-prefix">❓</span>Quizs Interactifs</summary><div><p>Quiz interactifs sur les droits et devoirs.</p></div></details>
+          <details><summary><span class="summary-prefix">🗂️</span>Flashcards</summary><div><p>Flashcards des définitions importantes.</p></div></details>
+          <details><summary><span class="summary-prefix">📖</span>Exercices</summary><div><p>Situations concrètes à analyser.</p></div></details>
+          <details><summary><span class="summary-prefix">📝</span>Evaluations d'Entraînement</summary><div><p>Sujets type Brevet en EMC.</p></div></details>
+          <details><summary><span class="summary-prefix">🌐</span>Sites webs (Tout en un)</summary><div><p>Sites officiels et ressources EMC.</p></div></details>
+        </div>
+      </div>
+    </section>
+
+    <!-- PHYSIQUE - CHIMIE -->
+    <section id="ressources-physique">
+      <div class="subject-page">
+        <div class="subject-page-header">
+          <div>
+            <a href="#ressources" class="subject-back">← Retour aux matières</a>
+            <h2 class="subject-page-title">Physique - Chimie</h2>
+          </div>
+          <span class="pill">Brevet · Physique-Chimie</span>
+        </div>
+        <p class="subject-page-tagline">
+          Lois, modèles, expériences et entraînements pour la Physique-Chimie.
+        </p>
+
+        <div class="resource-grid">
+          <!-- 8 catégories, placeholders -->
+          <details><summary><span class="summary-prefix">📑</span>Fiches de Révision & Leçons</summary><div><p>Rappels de cours et formules.</p></div></details>
+          <details><summary><span class="summary-prefix">🧠</span>Cartes Mentales</summary><div><p>Schémas des phénomènes étudiés.</p></div></details>
+          <details><summary><span class="summary-prefix">❓</span>Quizlets</summary><div><p>Quizlets sur les grandeurs physiques.</p></div></details>
+          <details><summary><span class="summary-prefix">❓</span>Quizs Interactifs</summary><div><p>Quiz pour s’entraîner avant une évaluation.</p></div></details>
+          <details><summary><span class="summary-prefix">🗂️</span>Flashcards</summary><div><p>Cartes des symboles et unités.</p></div></details>
+          <details><summary><span class="summary-prefix">📖</span>Exercices</summary><div><p>Exercices d’application avec corrections.</p></div></details>
+          <details><summary><span class="summary-prefix">📝</span>Evaluations d'Entraînement</summary><div><p>Sujets type Brevet en Physique-Chimie.</p></div></details>
+          <details><summary><span class="summary-prefix">🌐</span>Sites webs (Tout en un)</summary><div><p>Plateformes complètes de Physique-Chimie.</p></div></details>
+        </div>
+      </div>
+    </section>
+
+    <!-- SVT -->
+    <section id="ressources-svt">
+      <div class="subject-page">
+        <div class="subject-page-header">
+          <div>
+            <a href="#ressources" class="subject-back">← Retour aux matières</a>
+            <h2 class="subject-page-title">Sciences de la Vie & de la Terre</h2>
+          </div>
+          <span class="pill">Brevet · SVT</span>
+        </div>
+        <p class="subject-page-tagline">
+          Le vivant, la planète, la santé, avec fiches, exercices et évaluations.
+        </p>
+
+        <div class="resource-grid">
+          <!-- 8 catégories, placeholders -->
+          <details><summary><span class="summary-prefix">📑</span>Fiches de Révision & Leçons</summary><div><p>Organisation du vivant et géologie.</p></div></details>
+          <details><summary><span class="summary-prefix">🧠</span>Cartes Mentales</summary><div><p>Cartes des grands systèmes du corps humain.</p></div></details>
+          <details><summary><span class="summary-prefix">❓</span>Quizlets</summary><div><p>Quizlets sur le vocabulaire de SVT.</p></div></details>
+          <details><summary><span class="summary-prefix">❓</span>Quizs Interactifs</summary><div><p>Quiz interactifs sur les thèmes de SVT.</p></div></details>
+          <details><summary><span class="summary-prefix">🗂️</span>Flashcards</summary><div><p>Flashcards sur les définitions importantes.</p></div></details>
+          <details><summary><span class="summary-prefix">📖</span>Exercices</summary><div><p>Études de documents scientifiques.</p></div></details>
+          <details><summary><span class="summary-prefix">📝</span>Evaluations d'Entraînement</summary><div><p>Sujets type Brevet en SVT.</p></div></details>
+          <details><summary><span class="summary-prefix">🌐</span>Sites webs (Tout en un)</summary><div><p>Sites complets de ressources SVT.</p></div></details>
+        </div>
+      </div>
+    </section>
+
+    <!-- DNL ANGLAIS -->
+    <section id="ressources-dnl">
+      <div class="subject-page">
+        <div class="subject-page-header">
+          <div>
+            <a href="#ressources" class="subject-back">← Retour aux matières</a>
+            <h2 class="subject-page-title">DNL Anglais (Mme Houdant)</h2>
+          </div>
+          <span class="pill">DNL · Anglais</span>
+        </div>
+        <p class="subject-page-tagline">
+          Ressources bilingues pour travailler les notions scientifiques en anglais.
+        </p>
+
+        <div class="resource-grid">
+          <!-- 8 catégories, placeholders -->
+          <details><summary><span class="summary-prefix">📑</span>Fiches de Révision & Leçons</summary><div><p>Vocabulaire et notions scientifiques en anglais.</p></div></details>
+          <details><summary><span class="summary-prefix">🧠</span>Cartes Mentales</summary><div><p>Cartes bilingues des notions étudiées.</p></div></details>
+          <details><summary><span class="summary-prefix">❓</span>Quizlets</summary><div><p>Quizlets de vocabulaire scientifique anglais.</p></div></details>
+          <details><summary><span class="summary-prefix">❓</span>Quizs Interactifs</summary><div><p>Quiz en anglais pour s’entraîner à la DNL.</p></div></details>
+          <details><summary><span class="summary-prefix">🗂️</span>Flashcards</summary><div><p>Flashcards anglais / français.</p></div></details>
+          <details><summary><span class="summary-prefix">📖</span>Exercices</summary><div><p>Exercices de compréhension et expression.</p></div></details>
+          <details><summary><span class="summary-prefix">📝</span>Evaluations d'Entraînement</summary><div><p>Sujets d’entraînement DNL.</p></div></details>
+          <details><summary><span class="summary-prefix">🌐</span>Sites webs (Tout en un)</summary><div><p>Sites de DNL et CLIL en anglais.</p></div></details>
+        </div>
+      </div>
+    </section>
+
+    <!-- // PAGE 3 : OUTILS & MÉTHODES -->
+    <section id="outils">
+      <h2 class="section-title">Outils & Méthodes</h2>
+      <p class="section-subtitle">
+        Prépare-toi efficacement grâce aux calculateurs de points, aux outils de moyenne générale et aux fiches méthode DNB.
+      </p>
+
+      <div class="tools-grid">
+        <article class="tool-card">
+          <div>
+            <h3 class="tool-title">
+              📊 Calculateur points Brevet
+              <span class="tool-badge">Embed prêt</span>
+            </h3>
+            <p class="tool-text">
+              Simule ton total de points au DNB à partir de tes notes de contrôle continu et des épreuves finales.
+            </p>
+          </div>
+          <div class="tool-placeholder">
+            <iframe
+              title="Calculateur points Brevet"
+              width="100%"
+              height="400"
+              src="[Placeholder URL d'intégration ici]"
+            ></iframe>
+          </div>
+          <p class="tool-note">
+            Remplace l’URL par le lien d’intégration de ton tableau Google Sheets (mode public ou restreint).
+          </p>
+        </article>
+
+        <article class="tool-card">
+          <div>
+            <h3 class="tool-title">
+              📈 Calculateur moyenne générale
+              <span class="tool-badge">Embed prêt</span>
+            </h3>
+            <p class="tool-text">
+              Calcule ta moyenne générale sur l’année et observe ta progression au fil des trimestres.
+            </p>
+          </div>
+          <div class="tool-placeholder">
+            <iframe
+              title="Calculateur moyenne générale"
+              width="100%"
+              height="400"
+              src="[Placeholder URL d'intégration ici]"
+            ></iframe>
+          </div>
+          <p class="tool-note">
+            Colle ici l’URL d’intégration de ton tableau de suivi des moyennes (Google Sheets ou autre outil).
+          </p>
+        </article>
+
+        <article class="tool-card">
+          <div>
+            <h3 class="tool-title">
+              🧠 Fiches méthode DNB
+              <span class="tool-badge">Étapes clés</span>
+            </h3>
+            <p class="tool-text">
+              Utilise ces fiches pour apprendre à répondre exactement comme attendu le jour du Brevet.
+            </p>
+          </div>
+          <div class="method-buttons">
+            <button class="method-btn">✍️ Rédaction (Français)<span>Ouvrir</span></button>
+            <button class="method-btn">🔍 Analyse de documents<span>Ouvrir</span></button>
+            <button class="method-btn">🧪 Démarche scientifique<span>Ouvrir</span></button>
+            <button class="method-btn">🧮 Résolution de problèmes<span>Ouvrir</span></button>
+          </div>
+          <p class="tool-note">
+            Chaque bouton peut pointer vers une fiche PDF, une page Notion, ou un diaporama de méthode.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- // PAGE 4 : AGENDA & SUIVI -->
+    <section id="agenda">
+      <h2 class="section-title">Agenda & Suivi</h2>
+      <p class="section-subtitle">
+        Organise ton année avec un calendrier clair et un tableau de bord pour suivre tes progrès vers le Brevet.
+      </p>
+
+      <div class="calendar-block">
+        <div class="calendar-header">
+          <div>
+            <p class="calendar-title">Calendrier de révisions & contrôles</p>
+            <p class="calendar-help">
+              Ajoute les dates des contrôles, oraux blancs et périodes de révisions intensives.
+            </p>
+          </div>
+          <span class="pill">Google Calendar prêt</span>
+        </div>
+        <div class="calendar-placeholder">
+          <iframe
+            title="Calendrier de révisions"
+            width="100%"
+            height="600"
+            src="[Placeholder URL Google Calendar ici]"
+          ></iframe>
+        </div>
+      </div>
+
+      <div class="dashboard-grid">
+        <div class="dashboard-info">
+          <h3 class="dashboard-title">Dashboard de Réussite</h3>
+          <p class="dashboard-text">
+            Utilisez cet outil pour enregistrer vos progrès et visualiser votre amélioration au fil des semaines.
+          </p>
+          <ul class="dashboard-list">
+            <li>Note tes moyennes par matière à chaque trimestre.</li>
+            <li>Indique les dates de révisions effectuées et les chapitres travaillés.</li>
+            <li>Observe si tu respectes ton objectif de séances de révision hebdomadaires.</li>
+          </ul>
+          <p class="dashboard-note">
+            L’objectif est de rendre ta progression visible pour rester motivé jusqu’au jour J.
+          </p>
+        </div>
+        <div class="dashboard-placeholder">
+          <iframe
+            title="Formulaire de suivi de progression"
+            width="100%"
+            height="400"
+            src="[Placeholder URL d'intégration ici]"
+          ></iframe>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © <span id="year"></span> Master 3ème · Préparation Brevet.
+  </footer>
+
+  <script>
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+    const linkItems = navLinks.querySelectorAll('a');
+
+    navToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      navToggle.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+
+    linkItems.forEach((link) => {
+      link.addEventListener('click', () => {
+        if (window.innerWidth <= 720) {
+          navLinks.classList.remove('open');
+          navToggle.classList.remove('open');
+          navToggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+    });
+
+    const sections = document.querySelectorAll('main section');
+
+    function setActiveLink() {
+      let currentId = '';
+      const offset = 120;
+      sections.forEach((section) => {
+        const top = section.getBoundingClientRect().top + window.scrollY;
+        if (window.scrollY + offset >= top) {
+          currentId = section.id;
+        }
+      });
+      linkItems.forEach((link) => {
+        link.classList.toggle(
+          'active-link',
+          link.getAttribute('href') === '#' + currentId
+        );
+      });
+    }
+
+    window.addEventListener('scroll', setActiveLink);
+    window.addEventListener('load', setActiveLink);
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
